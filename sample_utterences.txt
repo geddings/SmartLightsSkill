@@ -1,2 +1,2 @@
-HelloIntent say hello
-HelloIntent say hi
+HelloIntent say hello to {firstname}
+HelloIntent say hi to {firstname}

@@ -10,7 +10,13 @@
       "intent": "AMAZON.StopIntent"
     },
     {
-      "intent": "HelloIntent"
+      "intent": "HelloIntent",
+      "slots": [
+        {
+          "name": "firstname",
+          "type": "LIST_OF_NAMES"
+        }
+      ]
     }
   ]
 }

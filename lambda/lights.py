@@ -42,10 +42,9 @@ def handle_session_end_request():
 
 def hello(intent, session):
     session_attributes = {}
-    # firstname = intent['slots']['firstname']['value']
+    firstname = intent['slots']['firstname']['value']
     reprompt_text = None
-    # speech_output = 'Hello {} Nice to Meet You'.format(firstname)
-    speech_output = 'Hello, Nice to Meet You'
+    speech_output = 'Hello {} Nice to Meet You'.format(firstname)
     should_end_session = True
     return build_response(session_attributes, build_speechlet_response(speech_output, should_end_session))
 
