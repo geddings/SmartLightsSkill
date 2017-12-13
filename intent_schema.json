@@ -14,12 +14,18 @@
       "slots": [
         {
           "name": "firstname",
-          "type": "LIST_OF_NAMES"
+          "type": "LIST_OF_LAB_NAMES"
         }
       ]
     },
     {
-      "intent": "IotIntent"
+      "intent": "IotIntent",
+      "slots": [
+        {
+          "name": "lightstate",
+          "type": "LIGHT_STATES"
+        }
+      ]
     }
   ]
 }

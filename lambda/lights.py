@@ -2,6 +2,7 @@ from __future__ import print_function
 import json
 import boto3
 
+client = boto3.client('iot-data')
 
 # --------------- Helpers that build all of the responses ----------------------
 
@@ -54,6 +55,24 @@ def hello(intent, session):
     should_end_session = True
     return build_response(session_attributes, build_speechlet_response(speech_output, should_end_session))
 
+def iot(intent, session):
+    device_id = 'RaspberryPi'
+    state = intent['slots']['lightstate']['value']
+    # if state == 'on':
+    #     print('on')
+    # else:
+    #     print('off')
+
+    response = client.update_thing_shadow(
+        thingName=device_id,
+        payload=json.dumps({
+            'state': {
+                'desired': {
+                    'light': state
+                }
+            }
+        })
+    )
 
 # --------------- Specific Events ------------------
 
@@ -63,6 +82,8 @@ def on_intent(intent_request, session):
     intent_name = intent_request['intent']['name']
     if intent_name == "HelloIntent":
         return hello(intent, session)
+    elif intent_name == "IotIntent":
+        return iot(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
         return get_welcome_response()
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
