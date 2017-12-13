@@ -14,6 +14,7 @@ class lightArray:
         self.set(False)
 
     def set(self, state):
+        print(state)
         b = Bridge('192.168.1.128')
         b.connect()
         if state['light'] == "on":
