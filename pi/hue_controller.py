@@ -30,6 +30,6 @@ def createIoT():
 
 
 if __name__ == "__main__":
-    iot = creatIoT()
+    iot = createIoT()
 
     lightArray('light-1', iot)
