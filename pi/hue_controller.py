@@ -4,6 +4,7 @@ import time
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTShadowClient
 from phue import Bridge
 
+
 class lightArray:
     def __init__(self, name, iot):
         self.name = name
