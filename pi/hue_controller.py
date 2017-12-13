@@ -40,7 +40,7 @@ def createIoT():
 if __name__ == "__main__":
     iot = createIoT()
 
-    lightArray('light-1', iot)
+    lightArray('RaspberryPi', iot)
 
     while True:
         time.sleep(.1)
