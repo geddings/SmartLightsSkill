@@ -17,15 +17,13 @@ class lightArray:
         print(state)
         b = Bridge('192.168.1.128')
         b.connect()
-        if state['lights'] == "on":
-            if state['effect'] == "blink":
-                for i in range(10):
-                    time.sleep(1)
-                    b.set_light(2, "on", True, transitiontime=0)
-                    time.sleep(1)
-                    b.set_light(2, "on", False, transitiontime=0)
-        else:
-            b.set_light(2, "on", False)
+
+        if state['effect'] == "blink":
+            while state['lights'] == "on":
+                time.sleep(1)
+                b.set_light(2, "on", True, transitiontime=0)
+                time.sleep(1)
+                b.set_light(2, "on", False, transitiontime=0)
 
     def newShadow(self, payload, responseStatus, token):
         print(payload)
