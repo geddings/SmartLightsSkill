@@ -24,7 +24,7 @@ class lightArray:
         if state['effect'] == "blink":
             while True:
                 time.sleep(1)
-                b.set_light(2, "on", False, transitiomtime=0)
+                b.set_light(2, "on", False, transitiontime=0)
                 time.sleep(1)
                 b.set_light(2, "on", True, transitiontime=0)
 
