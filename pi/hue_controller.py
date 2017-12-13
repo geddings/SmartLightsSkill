@@ -3,6 +3,7 @@ import json
 import time
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTShadowClient
 
+
 class lightArray:
     def __init__(self, name, iot):
         self.name = name
@@ -12,7 +13,8 @@ class lightArray:
         self.set(False)
 
     def set(self, state):
-        #hue code to turn on of off light
+        print('set')
+        # hue code to turn on of off light
 
     def newShadow(self, payload, responseStatus, token):
         newState = json.loads(payload)['state']['light']
@@ -20,9 +22,10 @@ class lightArray:
 
 
 def createIoT():
-    iot = AWSIoTMQTTShadowClient('MyPi', useWebsocket=True) # I think the first arg is the name of the IoT thing in aws
-    iot.configureEndpoint('a7gta1kdqgnmm.iot.us-east-1.amazonaws.com', 443) # REST endpoint
-    iot.configureCredentials(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'root-CA.pem')) # CA certificate
+    iot = AWSIoTMQTTShadowClient('RaspberryPi',
+                                 useWebsocket=True)  # I think the first arg is the name of the IoT thing in aws
+    iot.configureEndpoint('a3lujo7s13ykr5.iot.us-east-1.amazonaws.com', 443)  # REST endpoint
+    iot.configureCredentials(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'root-CA.pem'))  # CA certificate
     iot.configureConnectDisconnectTimeout(10)  # 10 sec
     iot.configureMQTTOperationTimeout(5)  # 5 sec
     iot.connect()
