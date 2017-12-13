@@ -1,5 +1,6 @@
 from __future__ import print_function
 import json
+import boto3
 
 
 # --------------- Helpers that build all of the responses ----------------------
@@ -44,7 +45,12 @@ def hello(intent, session):
     session_attributes = {}
     firstname = intent['slots']['firstname']['value']
     reprompt_text = None
-    speech_output = 'Hello {} Nice to Meet You'.format(firstname)
+    if firstname == 'junaid':
+        speech_output = 'Hello <prosody rate="20%"> Jew </prosody><prosody rate="50%"><phoneme alphabet="ipa" ph="u"> u </phoneme></prosody><prosody rate="50%"><phoneme alphabet="ipa" ph="u"> u </phoneme></prosody><prosody rate="50%"><phoneme alphabet="ipa" ph="u"> u </phoneme></prosody><prosody rate="50%"><phoneme alphabet="ipa" ph="n"> n </phoneme></prosody><prosody pitch="+50%" rate="20%"><phoneme alphabet="ipa" ph="eɪ"> a </phoneme></prosody><prosody pitch="+50%" rate="20%"><phoneme alphabet="ipa" ph="eɪ"> a </phoneme></prosody><prosody pitch="+50%" rate="20%"><phoneme alphabet="ipa" ph="eɪ"> a </phoneme></prosody><prosody rate="50%"><phoneme alphabet="ipa" ph="d"> d </phoneme></prosody> Nice to Meet You'
+    elif firstname == 'casey':
+        speech_output = 'Hello <prosody rate="50%"><phoneme alphabet="ipa" ph="c"> c </phoneme></prosody><prosody rate="50%"><phoneme alphabet="ipa" ph="eɪ"> a </phoneme></prosody><prosody rate="50%"><phoneme alphabet="ipa" ph="eɪ"> a </phoneme></prosody><prosody rate="50%"><phoneme alphabet="ipa" ph="eɪ"> a </phoneme></prosody><prosody rate="50%"><phoneme alphabet="ipa" ph="eɪ"> a </phoneme></prosody><prosody rate="50%"><phoneme alphabet="ipa" ph="eɪ"> a </phoneme></prosody><prosody rate="50%"><phoneme alphabet="ipa" ph="eɪ"> a </phoneme></prosody> Nice to meet you'
+    else:
+        speech_output = 'Hello {} Nice to Meet You'.format(firstname)
     should_end_session = True
     return build_response(session_attributes, build_speechlet_response(speech_output, should_end_session))
 
