@@ -2,7 +2,7 @@ import os
 import json
 import time
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTShadowClient
-
+from phue import Bridge
 
 class lightArray:
     def __init__(self, name, iot):
@@ -13,10 +13,12 @@ class lightArray:
         self.set(False)
 
     def set(self, state):
-        print('set')
-        # hue code to turn on of off light
+        b = Bridge('192.168.1.128')
+        b.connect()
+        b.set_light(2, state, True)
 
     def newShadow(self, payload, responseStatus, token):
+        print(payload)
         newState = json.loads(payload)['state']['light']
         self.set(newState)
 
@@ -36,3 +38,6 @@ if __name__ == "__main__":
     iot = createIoT()
 
     lightArray('light-1', iot)
+
+    while True:
+        time.sleep(.1)
