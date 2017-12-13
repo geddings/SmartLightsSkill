@@ -6,6 +6,7 @@ from phue import Bridge
 
 
 class lightArray:
+    idontcare = "off"
     def __init__(self, name, iot):
         self.name = name
 
@@ -18,8 +19,10 @@ class lightArray:
         b = Bridge('192.168.1.128')
         b.connect()
 
+        lightArray.idontcare = state['lights']
+
         if state['effect'] == "blink":
-            while state['lights'] == "on":
+            while lightArray.idontcare == "on":
                 time.sleep(1)
                 b.set_light(2, "on", True, transitiontime=0)
                 time.sleep(1)
