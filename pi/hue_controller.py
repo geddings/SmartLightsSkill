@@ -19,7 +19,7 @@ class lightArray:
         b.connect()
         if state['lights'] == "on":
             if state['effect'] == "blink":
-                while True:
+                for i in range(10):
                     time.sleep(1)
                     b.set_light(2, "on", False, transitiontime=0)
                     time.sleep(1)
