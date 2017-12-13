@@ -11,7 +11,7 @@ class lightArray:
 
         self.shadow = iot.createShadowHandlerWithName(self.name, True)
         self.shadow.shadowRegisterDeltaCallback(self.newShadow)
-        self.set(False)
+        # self.set(False)
 
     def set(self, state):
         print(state)
