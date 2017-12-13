@@ -15,7 +15,10 @@ class lightArray:
     def set(self, state):
         b = Bridge('192.168.1.128')
         b.connect()
-        b.set_light(2, state, True)
+        if state == "on":
+            b.set_light(2, "on", True)
+        else:
+            b.set_light(2, "on", False)
 
     def newShadow(self, payload, responseStatus, token):
         print(payload)
