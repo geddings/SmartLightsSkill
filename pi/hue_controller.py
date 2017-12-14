@@ -6,7 +6,8 @@ from phue import Bridge
 
 
 class lightArray:
-    idontcare = "off"
+    lightcheck = "off"
+    effectcheck = "none"
 
     def __init__(self, name, iot):
         self.name = name
@@ -20,12 +21,13 @@ class lightArray:
         b = Bridge('192.168.1.128')
         b.connect()
 
-        lightArray.idontcare = state['lights']
+        lightArray.lightcheck = state['lights']
+        lightArray.effectcheck = state['effect']
 
         if state['lights'] == "on":
             if state['effect'] == "blink":
                 b.set_light([1, 2], "on", False, transitiontime=0)
-                while lightArray.idontcare == "on":
+                while lightArray.lightcheck == "on" and lightArray.effectcheck != "none":
                     time.sleep(1)
                     b.set_light([1, 2], "on", True, transitiontime=0)
                     time.sleep(1)
@@ -33,7 +35,7 @@ class lightArray:
             elif state['effect'] == "cycle":
                 evenodd = 0
                 b.set_light([1, 2], "on", False, transitiontime=0)
-                while lightArray.idontcare == "on":
+                while lightArray.lightcheck == "on" and lightArray.effectcheck != "none":
                     if evenodd%2 == 0:
                         b.set_light(1, "on", True, transitiontime=0)
                         b.set_light(2, "on", False, transitiontime=0)
