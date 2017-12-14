@@ -7,6 +7,7 @@ from phue import Bridge
 
 class lightArray:
     idontcare = "off"
+
     def __init__(self, name, iot):
         self.name = name
 
@@ -25,13 +26,13 @@ class lightArray:
             if state['effect'] == "blink":
                 while lightArray.idontcare == "on":
                     time.sleep(1)
-                    b.set_light(2, "on", True, transitiontime=0)
+                    b.set_light([1, 2], "on", True, transitiontime=0)
                     time.sleep(1)
-                    b.set_light(2, "on", False, transitiontime=0)
+                    b.set_light([1, 2], "on", False, transitiontime=0)
             else:
-                b.set_light(2, "on", True)
+                b.set_light([1, 2], "on", True)
         else:
-            b.set_light(2, "on", False)
+            b.set_light([1, 2], "on", False)
 
     def newShadow(self, payload, responseStatus, token):
         print(payload)
