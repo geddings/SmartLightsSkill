@@ -26,6 +26,15 @@
           "type": "LIGHT_STATES"
         }
       ]
+    },
+    {
+      "intent": "IotEffectIntent",
+      "slots": [
+        {
+          "name": "lighteffect",
+          "type": "LIGHT_EFFECTS"
+        }
+      ]
     }
   ]
 }

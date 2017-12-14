@@ -56,6 +56,7 @@ def hello(intent, session):
     return build_response(session_attributes, build_speechlet_response(speech_output, should_end_session))
 
 def iot(intent, session):
+    session_attributes = {}
     device_id = 'RaspberryPi'
     state = intent['slots']['lightstate']['value']
     # if state == 'on':
@@ -68,11 +69,35 @@ def iot(intent, session):
         payload=json.dumps({
             'state': {
                 'desired': {
-                    'light': state
+                    'lights': state,
+                    'effect': 'none'
                 }
             }
         })
     )
+
+    speech_output = 'Now turning all of the lights {}'.format(state)
+    return build_response(session_attributes, build_speechlet_response(speech_output, should_end_session=True))
+
+def iot_effect(intent, session):
+    session_attributes = {}
+    device_id = 'RaspberryPi'
+    effect = intent['slots']['lighteffect']['value']
+
+    response = client.update_thing_shadow(
+        thingName=device_id,
+        payload=json.dumps({
+            'state': {
+                'desired': {
+                    'lights': 'on',
+                    'effect': effect
+                }
+            }
+        })
+    )
+
+    speech_output = 'Now attempting to {} the lights'.format(effect)
+    return build_response(session_attributes, build_speechlet_response(speech_output, should_end_session=True))
 
 # --------------- Specific Events ------------------
 
@@ -84,6 +109,8 @@ def on_intent(intent_request, session):
         return hello(intent, session)
     elif intent_name == "IotIntent":
         return iot(intent, session)
+    elif intent_name == "IotEffectIntent":
+        return iot_effect(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
         return get_welcome_response()
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":

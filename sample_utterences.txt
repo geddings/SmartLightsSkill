@@ -1,3 +1,4 @@
 HelloIntent say hello to {firstname}
 HelloIntent say hi to {firstname}
 IotIntent turn the lights {lightstate}
+IotEffectIntent {lighteffect} the lights
