@@ -47,7 +47,7 @@ class lightArray:
             else:
                 b.set_light([1, 2], "on", True)
         else:
-            b.set_light([1, 2], "on", False)
+            b.set_light([1, 2], "on", True)
 
     def newShadow(self, payload, responseStatus, token):
         print(payload)
