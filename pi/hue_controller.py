@@ -56,9 +56,9 @@ class lightArray:
                     else:
                         b.set_light(1, "on", True, transitiontime=0)
                     if count2 % 2 == 0:
-                        b.set_light(2, "on", False, transitiontime=0)
-                    else:
                         b.set_light(2, "on", True, transitiontime=0)
+                    else:
+                        b.set_light(2, "on", False, transitiontime=0)
                     count = count + 1
                     if count % 2 == 1:
                         count2 = count2 + 1
