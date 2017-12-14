@@ -34,27 +34,34 @@ class lightArray:
                     b.set_light([1, 2], "on", False, transitiontime=0)
 
             elif state['effect'] == "cycle":
-                evenodd = 0
+                count = 0
                 b.set_light([1, 2], "on", False, transitiontime=0)
                 while lightArray.lightcheck == "on" and lightArray.effectcheck != "none":
-                    if evenodd%2 == 0:
+                    if count%2 == 0:
                         b.set_light(1, "on", True, transitiontime=0)
                         b.set_light(2, "on", False, transitiontime=0)
                     else:
                         b.set_light(1, "on", False, transitiontime=0)
                         b.set_light(2, "on", True, transitiontime=0)
-                    evenodd = evenodd + 1
+                    count = count + 1
                     time.sleep(1)
 
             elif state['effect'] == "count":
-                evenodd = 0
+                count = 0
+                count2 = 0
                 b.set_light([1, 2], "on", False, transitiontime=0)
                 while lightArray.lightcheck == "on" and lightArray.effectcheck != "none":
-                    if evenodd % 2 == 0:
+                    if count % 2 == 0:
                         b.set_light(1, "on", False, transitiontime=0)
                     else:
                         b.set_light(1, "on", True, transitiontime=0)
-                    evenodd = evenodd + 1
+                    if count2 % 2 == 0:
+                        b.set_light(2, "on", False, transitiontime=0)
+                    else:
+                        b.set_light(2, "on", True, transitiontime=0)
+                    count = count + 1
+                    if count % 2 == 1:
+                        count2 = count2 + 1
                     time.sleep(1)
 
 
