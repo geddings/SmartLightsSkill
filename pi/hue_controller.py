@@ -38,6 +38,7 @@ class lightArray:
                     else:
                         b.set_light(1, "on", False, transitiontime=0)
                         b.set_light(2, "on", True, transitiontime=0)
+                    evenodd = evenodd + 1
                     time.sleep(1)
             else:
                 b.set_light([1, 2], "on", True)
