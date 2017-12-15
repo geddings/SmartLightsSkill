@@ -8,7 +8,7 @@ from phue import Bridge
 class lightArray:
     lightcheck = "off"
     effectcheck = "none"
-    brightcheck = "50"
+    brightcheck = 50
 
     def __init__(self, name, iot):
         self.name = name
