@@ -8,13 +8,13 @@ from phue import Bridge
 class lightArray:
     lightcheck = "off"
     effectcheck = "none"
+    brightcheck = "50"
 
     def __init__(self, name, iot):
         self.name = name
 
         self.shadow = iot.createShadowHandlerWithName(self.name, True)
         self.shadow.shadowRegisterDeltaCallback(self.newShadow)
-        # self.set(False)
 
     def set(self, state):
         print(state)
@@ -23,13 +23,14 @@ class lightArray:
 
         lightArray.lightcheck = state['lights']
         lightArray.effectcheck = state['effect']
+        lightArray.brightcheck = state['brightness']
 
         if state['lights'] == "on":
             if state['effect'] == "blink":
                 b.set_light([1, 2], "on", False, transitiontime=0)
                 while lightArray.lightcheck == "on" and lightArray.effectcheck != "none":
                     time.sleep(1)
-                    b.set_light([1, 2], "on", True, transitiontime=0)
+                    b.set_light([1, 2], {'on':True, 'bri':lightArray.brightcheck, 'transitiontime':0})
                     time.sleep(1)
                     b.set_light([1, 2], "on", False, transitiontime=0)
 
@@ -38,11 +39,11 @@ class lightArray:
                 b.set_light([1, 2], "on", False, transitiontime=0)
                 while lightArray.lightcheck == "on" and lightArray.effectcheck != "none":
                     if count%2 == 0:
-                        b.set_light(1, "on", True, transitiontime=0)
+                        b.set_light(1, {'on':True, 'bri':lightArray.brightcheck, 'transitiontime':0})
                         b.set_light(2, "on", False, transitiontime=0)
                     else:
                         b.set_light(1, "on", False, transitiontime=0)
-                        b.set_light(2, "on", True, transitiontime=0)
+                        b.set_light(2, {'on':True, 'bri':lightArray.brightcheck, 'transitiontime':0})
                     count = count + 1
                     time.sleep(1)
 
@@ -54,11 +55,11 @@ class lightArray:
                     if count % 2 == 0:
                         b.set_light(1, "on", False, transitiontime=0)
                     else:
-                        b.set_light(1, "on", True, transitiontime=0)
+                        b.set_light(1, {'on':True, 'bri':lightArray.brightcheck, 'transitiontime':0})
                     if count2 % 2 == 0:
                         b.set_light(2, "on", False, transitiontime=0)
                     else:
-                        b.set_light(2, "on", True, transitiontime=0)
+                        b.set_light(2, {'on':True, 'bri':lightArray.brightcheck, 'transitiontime':0})
                     if count % 2 == 1:
                         count2 = count2 + 1
                     count = count + 1
@@ -66,7 +67,7 @@ class lightArray:
 
 
             else:
-                b.set_light([1, 2], "on", True)
+                b.set_light([1, 2], {'on':True, 'bri':lightArray.brightcheck, 'transitiontime':0})
         else:
             b.set_light([1, 2], "on", False)
 
