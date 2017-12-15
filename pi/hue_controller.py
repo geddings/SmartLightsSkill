@@ -30,7 +30,7 @@ class lightArray:
                 b.set_light([1, 2], "on", False, transitiontime=0)
                 while lightArray.lightcheck == "on" and lightArray.effectcheck != "none":
                     time.sleep(1)
-                    b.set_light([1, 2], {'on':True, 'bri':lightArray.brightcheck, 'transitiontime':0})
+                    b.set_light([1, 2], {'transitiontime': 0, 'on': True, 'bri': lightArray.brightcheck})
                     time.sleep(1)
                     b.set_light([1, 2], "on", False, transitiontime=0)
 
@@ -39,11 +39,11 @@ class lightArray:
                 b.set_light([1, 2], "on", False, transitiontime=0)
                 while lightArray.lightcheck == "on" and lightArray.effectcheck != "none":
                     if count%2 == 0:
-                        b.set_light(1, {'on':True, 'bri':lightArray.brightcheck, 'transitiontime':0})
+                        b.set_light(1, {'transitiontime': 0, 'on': True, 'bri': lightArray.brightcheck})
                         b.set_light(2, "on", False, transitiontime=0)
                     else:
                         b.set_light(1, "on", False, transitiontime=0)
-                        b.set_light(2, {'on':True, 'bri':lightArray.brightcheck, 'transitiontime':0})
+                        b.set_light(2, {'transitiontime': 0, 'on': True, 'bri': lightArray.brightcheck})
                     count = count + 1
                     time.sleep(1)
 
@@ -55,11 +55,11 @@ class lightArray:
                     if count % 2 == 0:
                         b.set_light(1, "on", False, transitiontime=0)
                     else:
-                        b.set_light(1, {'on':True, 'bri':lightArray.brightcheck, 'transitiontime':0})
+                        b.set_light(1, {'transitiontime': 0, 'on': True, 'bri': lightArray.brightcheck})
                     if count2 % 2 == 0:
                         b.set_light(2, "on", False, transitiontime=0)
                     else:
-                        b.set_light(2, {'on':True, 'bri':lightArray.brightcheck, 'transitiontime':0})
+                        b.set_light(2, {'transitiontime': 0, 'on': True, 'bri': lightArray.brightcheck})
                     if count % 2 == 1:
                         count2 = count2 + 1
                     count = count + 1
@@ -67,7 +67,7 @@ class lightArray:
 
 
             else:
-                b.set_light([1, 2], {'on':True, 'bri':lightArray.brightcheck, 'transitiontime':0})
+                b.set_light([1, 2], {'transitiontime': 0, 'on': True, 'bri': lightArray.brightcheck})
         else:
             b.set_light([1, 2], "on", False)
 
