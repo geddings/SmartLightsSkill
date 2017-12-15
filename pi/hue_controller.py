@@ -23,8 +23,8 @@ class lightArray:
 
         lightArray.lightcheck = state['lights']
         lightArray.effectcheck = state['effect']
-        lightArray.brightcheck = state['brightness']
-        print([lightArray.brightcheck])
+        lightArray.brightcheck = int(state['brightness'])
+        print(lightArray.brightcheck)
 
         if state['lights'] == "on":
             if state['effect'] == "blink":
